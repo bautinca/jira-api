@@ -10,20 +10,27 @@ Y en la otra terminal (no hace falta dentro de .venv) para mandar solicitudes HT
 curl -X POST http://localhost:8000/collect
 ```
 
-## Ejecucion automatica con Docker
+## Ejecucion automatica con Docker Compose
 
-Aca logicamente no hace falta entrar dentro de .venv. El script utiliza el `Dockerfile` del proyecto. Construye la imagen con todas las dependencias, inicia un contenedor, comprueba `/health`, ejecuta `/collect` y finalmente elimina el contenedor.
+No hace falta entrar dentro de `.venv`. El archivo `compose.yaml` centraliza la configuracion del servicio web: construye la imagen usando el `Dockerfile`, carga `.env`, configura el puerto y monta los directorios locales. El script solo orquesta el ciclo de vida de Docker Compose.
 
-No necesita activar `.venv` ni instalar las dependencias Python en el sistema local. Solo requiere Docker, el archivo `.env` y las carpetas `downloads/` y `output/` (que las crea automaticamente el script Shell localmente)
+No necesitas instalar dependencias Python en el sistema local. Solo necesitas Docker, Docker Compose v2 y el archivo `.env`. Las carpetas `downloads/` y `output/` las crea automaticamente el script.
 
 ```shell
 ./run_collect.sh
 ```
 
-El documento generado queda disponible en `output/merged.docx` y los adjuntos en `downloads/`, porque ambas carpetas se montan desde el host al contenedor. El puerto por defecto es 8000, para usar otro puerto:
+El documento generado queda disponible en `output/merged.docx` y los adjuntos en `downloads/`, porque ambas carpetas se montan desde el host al contenedor. El puerto local por defecto es 8000. Para usar otro puerto:
 
 ```shell
-PORT=8001 ./run_collect.sh
+HOST_PORT=8001 ./run_collect.sh
+```
+
+Tambien puedes administrar el servicio directamente:
+
+```shell
+docker compose up --build
+docker compose down
 ```
 
 ## Ejecucion servicio web sitio deployado
