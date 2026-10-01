@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+src/jira_collector/__init__.py
+src/jira_collector/api.py
+src/jira_collector/config.py
+src/jira_collector/document_merger.py
+src/jira_collector/extractors.py
+src/jira_collector/jira.py
+src/jira_collector/service.py
+src/jira_kanban_collector.egg-info/PKG-INFO
+src/jira_kanban_collector.egg-info/SOURCES.txt
+src/jira_kanban_collector.egg-info/dependency_links.txt
+src/jira_kanban_collector.egg-info/requires.txt
+src/jira_kanban_collector.egg-info/top_level.txt

@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: jira-kanban-collector
+Version: 0.1.0
+Summary: Descarga adjuntos de la primera columna de un tablero Jira y los unifica
+Requires-Python: >=3.11
+Requires-Dist: fastapi<1.0,>=0.115
+Requires-Dist: httpx<1.0,>=0.27
+Requires-Dist: pydantic-settings<3.0,>=2.6
+Requires-Dist: pypdf<7.0,>=5.0
+Requires-Dist: python-docx<2.0,>=1.1
+Requires-Dist: docxcompose<2.0,>=1.4
+Requires-Dist: uvicorn[standard]<1.0,>=0.34
