@@ -1,4 +1,4 @@
-# El contenedor tendra la imagen python 3.12 slim como base
+# El contenedor tendra la imagen base python 3.12 slim para esta imagen Dockerfile
 FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \

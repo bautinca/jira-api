@@ -47,5 +47,6 @@ def collect(settings) -> CollectionResult:
     # Finalmente cerramos el cliente de Jira para liberar recursos
     finally:
         client.close()
+    # Una vez descargados todos los adjuntos de los issues de la primer columna, llamamos a la funcion merge_documents para unirlos en un solo archivo de salida
     included = merge_documents(documents, settings.output_file)
     return CollectionResult(issues_count, downloaded, included, skipped, settings.output_file)
