@@ -26,6 +26,21 @@ El documento generado queda disponible en `output/merged.docx` y los adjuntos en
 HOST_PORT=8001 ./run_collect.sh
 ```
 
+En Windows, instala Docker Desktop y ejecuta el equivalente de PowerShell:
+
+```powershell
+.\run_collect.ps1
+```
+
+Si PowerShell bloquea la ejecucion del script, habilitala solo para la terminal actual:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\run_collect.ps1
+```
+
+El script de Windows usa el mismo `compose.yaml`, `Dockerfile`, `.env`, volumenes y puertos. No necesita Python ni dependencias instaladas en Windows.
+
 Tambien puedes administrar el servicio directamente:
 
 ```shell
