@@ -56,3 +56,11 @@ https://jira-doc-merge.onrender.com/docs
 ```
 
 Endpoint `/health` chequea el estado del servidor web con la app levantada, endpoint `/collect` inicia el proceso de mergeo de los documentos y el endoint `/output` descarga el documento mergeado localmente 
+
+La vista simple esta disponible en la raiz del servicio:
+
+```text
+https://jira-doc-merge.onrender.com/
+```
+
+El boton de esa vista ejecuta `/collect` y, cuando termina correctamente, descarga `/output` automaticamente.

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jira Document Merge</title>
+    <style>
+      :root { color-scheme: light; font-family: system-ui, sans-serif; }
+      body { display: grid; min-height: 100vh; margin: 0; place-items: center; background: #f4f6f8; }
+      main { width: min(90vw, 420px); padding: 2rem; text-align: center; background: white; border: 1px solid #d9dee5; border-radius: 10px; box-shadow: 0 8px 24px #172b4d18; }
+      button { padding: 0.8rem 1.2rem; color: white; background: #1769aa; border: 0; border-radius: 6px; cursor: pointer; font: inherit; }
+      button:disabled { cursor: wait; opacity: 0.65; }
+      #status { min-height: 1.5rem; margin-top: 1rem; color: #4b5563; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <button id="collect" type="button">Generar documento</button>
+      <p id="status" role="status" aria-live="polite"></p>
+    </main>
+    <script>
+      const button = document.getElementById("collect");
+      const status = document.getElementById("status");
+
+      button.addEventListener("click", async () => {
+        button.disabled = true;
+        status.textContent = "Procesando documentos...";
+        try {
+          const response = await fetch("/collect", { method: "POST" });
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error(data.detail || "No se pudo generar el documento");
+          }
+          status.textContent = "Documento generado. Iniciando descarga...";
+          const download = document.createElement("a");
+          download.href = "/output";
+          download.download = "merged.docx";
+          document.body.appendChild(download);
+          download.click();
+          download.remove();
+        } catch (error) {
+          status.textContent = `Error: ${error.message}`;
+        } finally {
+          button.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

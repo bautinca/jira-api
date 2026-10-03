@@ -1,5 +1,7 @@
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 
 from jira_collector import __version__
 from jira_collector.config import Settings
@@ -7,6 +9,13 @@ from jira_collector.service import collect
 
 # Creamos la aplicacion FastAPI con el titulo y la version del proyecto
 app = FastAPI(title="Jira Kanban Collector", version=__version__)
+TEMPLATE_PATH = Path(__file__).parent / "templates" / "index.html"
+
+
+@app.get("/", response_class=HTMLResponse)
+def home() -> str:
+    """Sirve la vista para iniciar y descargar la recolección."""
+    return TEMPLATE_PATH.read_text(encoding="utf-8")
 
 # Endpoint de salud para verificar que la aplicacion esta corriendo correctamente.
 @app.get("/health")
