@@ -63,4 +63,4 @@ La vista simple esta disponible en la raiz del servicio:
 https://jira-doc-merge.onrender.com/
 ```
 
-El boton de esa vista ejecuta `/collect` y, cuando termina correctamente, descarga `/output` automaticamente.
+La vista usa una plantilla Jinja2 y un formulario HTML tradicional. Al pulsar el boton ejecuta `POST /collect-and-download`; FastAPI procesa los documentos y devuelve directamente el `.docx`, sin necesitar JavaScript.

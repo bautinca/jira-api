@@ -9,7 +9,7 @@ services:
     environment:
       PORT: 10000 # Puerto en el que la aplicación levantada escuchará dentro del contenedor levantado
     ports:
-      - "${HOST_PORT:-8000}:10000" # El contenedor escucha a la aplicacion en el puerto 10000, pero lo exponemos al host en el puerto 8000 (o el que se indique en la variable de entorno HOST_PORT)
+      - "${HOST_PORT:-8000}:10000" # El contenedor escucha a la aplicacion en el puerto 10000, pero lo exponemos al host en el puerto 8000 (o el que se indique en la variable de entorno HOST_PORT), por tanto si nosotros queremos entrar a la app desde host debemos entrar al puerto 8000
     volumes:
       - ./downloads:/app/downloads # Hacemos que el directorio downloads del contenedor se monte en el directorio downloads del host (en otras palabras sincronizamos el directorio downloads del contenedor con el directorio downloads del host)
       - ./output:/app/output # Hacemos que el directorio output del contenedor se monte en el directorio output del host (en otras palabras sincronizamos el directorio output del contenedor con el directorio output del host)
